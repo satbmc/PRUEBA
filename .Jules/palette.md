@@ -1,0 +1,3 @@
+## 2025-05-22 - [Accessibility & UX Foundations]
+**Learning:** Icon-only buttons (common in builder UIs like this one) frequently lack `aria-label` and `title` attributes, making them inaccessible to screen readers and difficult for users to identify without tooltips. Additionally, hidden-on-hover actions (like a delete button in a list) must be made visible on keyboard focus using `focus-visible:opacity-100` to ensure keyboard-only users can access them.
+**Action:** Always verify that every icon-only button has an `aria-label`, a `title`, and a visible focus state. Ensure any hover-only UI elements are also triggered by `focus-visible` or `focus-within`.
