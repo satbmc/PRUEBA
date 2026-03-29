@@ -382,19 +382,25 @@ export default function App() {
             <div className="flex bg-slate-100 p-1 rounded-lg">
               <button 
                 onClick={() => setPreviewDevice('desktop')}
-                className={`p-1.5 rounded-md transition-all ${previewDevice === 'desktop' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
+                className={`p-1.5 rounded-md transition-all focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none ${previewDevice === 'desktop' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
+                aria-label="Desktop preview"
+                title="Desktop preview"
               >
                 <Monitor size={18} />
               </button>
               <button 
                 onClick={() => setPreviewDevice('tablet')}
-                className={`p-1.5 rounded-md transition-all ${previewDevice === 'tablet' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
+                className={`p-1.5 rounded-md transition-all focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none ${previewDevice === 'tablet' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
+                aria-label="Tablet preview"
+                title="Tablet preview"
               >
                 <Tablet size={18} />
               </button>
               <button 
                 onClick={() => setPreviewDevice('mobile')}
-                className={`p-1.5 rounded-md transition-all ${previewDevice === 'mobile' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
+                className={`p-1.5 rounded-md transition-all focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none ${previewDevice === 'mobile' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
+                aria-label="Mobile preview"
+                title="Mobile preview"
               >
                 <Smartphone size={18} />
               </button>
@@ -648,7 +654,9 @@ export default function App() {
                               </span>
                               <button 
                                 onClick={(e) => { e.stopPropagation(); removeSection(section.id); }}
-                                className="opacity-0 group-hover:opacity-100 p-1.5 hover:bg-red-50 hover:text-red-600 rounded-md transition-all"
+                                className="opacity-0 group-hover:opacity-100 focus-visible:opacity-100 p-1.5 hover:bg-red-50 hover:text-red-600 rounded-md transition-all focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none"
+                                aria-label="Delete section"
+                                title="Delete section"
                               >
                                 <Trash2 size={14} />
                               </button>
@@ -755,8 +763,9 @@ export default function App() {
 
                       <div className="space-y-4">
                         <div>
-                          <label className="text-xs font-bold text-slate-500 mb-1 block">Tipo de Negocio</label>
+                          <label htmlFor="ai-business" className="text-xs font-bold text-slate-500 mb-1 block">Tipo de Negocio</label>
                           <input 
+                            id="ai-business"
                             type="text" 
                             placeholder="Ej: Agencia de viajes, SaaS de RRHH..."
                             className="w-full p-2 rounded-lg border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-indigo-500"
@@ -765,8 +774,9 @@ export default function App() {
                           />
                         </div>
                         <div>
-                          <label className="text-xs font-bold text-slate-500 mb-1 block">Objetivo</label>
+                          <label htmlFor="ai-goal" className="text-xs font-bold text-slate-500 mb-1 block">Objetivo</label>
                           <input 
+                            id="ai-goal"
                             type="text" 
                             placeholder="Ej: Conseguir leads, vender curso..."
                             className="w-full p-2 rounded-lg border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-indigo-500"
@@ -775,8 +785,9 @@ export default function App() {
                           />
                         </div>
                         <div>
-                          <label className="text-xs font-bold text-slate-500 mb-1 block">Público Objetivo</label>
+                          <label htmlFor="ai-audience" className="text-xs font-bold text-slate-500 mb-1 block">Público Objetivo</label>
                           <input 
+                            id="ai-audience"
                             type="text" 
                             placeholder="Ej: Emprendedores jóvenes, padres..."
                             className="w-full p-2 rounded-lg border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-indigo-500"
@@ -816,8 +827,9 @@ export default function App() {
 
                       <div className="space-y-4">
                         <div>
-                          <label className="text-xs font-bold text-slate-500 mb-1 block">Hipótesis</label>
+                          <label htmlFor="ab-hypothesis" className="text-xs font-bold text-slate-500 mb-1 block">Hipótesis</label>
                           <textarea 
+                            id="ab-hypothesis"
                             placeholder="Ej: Cambiar el color del botón a rojo aumentará los clics en un 10%."
                             className="w-full p-2 rounded-lg border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-indigo-500 h-24"
                             value={abConfig.hypothesis}
@@ -825,8 +837,9 @@ export default function App() {
                           />
                         </div>
                         <div>
-                          <label className="text-xs font-bold text-slate-500 mb-1 block">Métrica Clave</label>
+                          <label htmlFor="ab-metric" className="text-xs font-bold text-slate-500 mb-1 block">Métrica Clave</label>
                           <select 
+                            id="ab-metric"
                             className="w-full p-2 rounded-lg border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-indigo-500"
                             value={abConfig.metric}
                             onChange={(e) => setAbConfig(prev => ({ ...prev, metric: e.target.value }))}
@@ -839,10 +852,11 @@ export default function App() {
                         </div>
                         <div>
                           <div className="flex justify-between mb-1">
-                            <label className="text-xs font-bold text-slate-500">Distribución de Tráfico</label>
+                            <label htmlFor="ab-distribution" className="text-xs font-bold text-slate-500">Distribución de Tráfico</label>
                             <span className="text-xs font-bold text-indigo-600">{abConfig.distribution}% Versión B</span>
                           </div>
                           <input 
+                            id="ab-distribution"
                             type="range" 
                             min="0" 
                             max="100" 
@@ -878,7 +892,12 @@ export default function App() {
                     >
                       <div className="flex items-center justify-between mb-4">
                         <h4 className="font-bold text-sm text-slate-700">Editar {SECTION_TYPES.find(t => t.type === activeSection?.type)?.label}</h4>
-                        <button onClick={() => setActiveSectionId(null)} className="text-slate-400 hover:text-slate-600">
+                        <button
+                          onClick={() => setActiveSectionId(null)}
+                          className="text-slate-400 hover:text-slate-600 focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none rounded-md"
+                          aria-label="Close section editor"
+                          title="Close section editor"
+                        >
                           <ChevronRight size={18} />
                         </button>
                       </div>
@@ -977,8 +996,12 @@ export default function App() {
                         onClick={() => setActiveSectionId(section.id)}
                       >
                         {renderSectionPreview(section)}
-                        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2">
-                          <button className="p-2 bg-white shadow-lg rounded-lg text-slate-600 hover:text-indigo-600">
+                        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 focus-within:opacity-100 transition-opacity flex gap-2">
+                          <button
+                            className="p-2 bg-white shadow-lg rounded-lg text-slate-600 hover:text-indigo-600 focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none"
+                            aria-label="Section settings"
+                            title="Section settings"
+                          >
                             <Settings size={16} />
                           </button>
                         </div>
