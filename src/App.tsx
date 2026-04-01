@@ -648,7 +648,9 @@ export default function App() {
                               </span>
                               <button 
                                 onClick={(e) => { e.stopPropagation(); removeSection(section.id); }}
-                                className="opacity-0 group-hover:opacity-100 p-1.5 hover:bg-red-50 hover:text-red-600 rounded-md transition-all"
+                                className="opacity-0 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-red-500 p-1.5 hover:bg-red-50 hover:text-red-600 rounded-md transition-all outline-none"
+                                aria-label="Eliminar sección"
+                                title="Eliminar sección"
                               >
                                 <Trash2 size={14} />
                               </button>
