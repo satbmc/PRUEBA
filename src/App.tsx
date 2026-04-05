@@ -630,8 +630,17 @@ export default function App() {
                               initial={{ opacity: 0, x: -10 }}
                               animate={{ opacity: 1, x: 0 }}
                               exit={{ opacity: 0, x: -10 }}
-                              className={`group flex items-center gap-3 p-3 rounded-xl border transition-all cursor-pointer ${activeSectionId === section.id ? 'bg-indigo-50 border-indigo-200 text-indigo-700' : 'bg-white border-slate-100 hover:border-slate-300 text-slate-600'}`}
+                              className={`group flex items-center gap-3 p-3 rounded-xl border transition-all cursor-pointer focus-within:border-indigo-400 focus-within:ring-1 focus-within:ring-indigo-400 focus-visible:ring-2 focus-visible:ring-indigo-500 outline-none ${activeSectionId === section.id ? 'bg-indigo-50 border-indigo-200 text-indigo-700' : 'bg-white border-slate-100 hover:border-slate-300 text-slate-600'}`}
                               onClick={() => setActiveSectionId(section.id)}
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                  e.preventDefault();
+                                  setActiveSectionId(section.id);
+                                }
+                              }}
+                              tabIndex={0}
+                              role="button"
+                              aria-pressed={activeSectionId === section.id}
                             >
                               <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center shrink-0 group-hover:bg-white transition-colors">
                                 {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'Layout' && <Layout size={16} />}
@@ -648,7 +657,9 @@ export default function App() {
                               </span>
                               <button 
                                 onClick={(e) => { e.stopPropagation(); removeSection(section.id); }}
-                                className="opacity-0 group-hover:opacity-100 p-1.5 hover:bg-red-50 hover:text-red-600 rounded-md transition-all"
+                                aria-label="Eliminar sección"
+                                title="Eliminar sección"
+                                className="opacity-0 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-red-500 p-1.5 hover:bg-red-50 hover:text-red-600 rounded-md transition-all outline-none"
                               >
                                 <Trash2 size={14} />
                               </button>
