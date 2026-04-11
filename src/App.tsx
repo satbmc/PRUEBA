@@ -382,18 +382,24 @@ export default function App() {
             <div className="flex bg-slate-100 p-1 rounded-lg">
               <button 
                 onClick={() => setPreviewDevice('desktop')}
+                aria-label="Vista de escritorio"
+                title="Vista de escritorio"
                 className={`p-1.5 rounded-md transition-all ${previewDevice === 'desktop' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
               >
                 <Monitor size={18} />
               </button>
               <button 
                 onClick={() => setPreviewDevice('tablet')}
+                aria-label="Vista de tableta"
+                title="Vista de tableta"
                 className={`p-1.5 rounded-md transition-all ${previewDevice === 'tablet' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
               >
                 <Tablet size={18} />
               </button>
               <button 
                 onClick={() => setPreviewDevice('mobile')}
+                aria-label="Vista de móvil"
+                title="Vista de móvil"
                 className={`p-1.5 rounded-md transition-all ${previewDevice === 'mobile' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
               >
                 <Smartphone size={18} />
@@ -427,6 +433,8 @@ export default function App() {
                   a.click();
                 }
               }}
+              aria-label="Exportar página como HTML"
+              title="Exportar"
               className="flex items-center gap-2 px-4 py-2 text-slate-600 hover:text-slate-900 font-medium transition-colors"
             >
               <Download size={18} />
@@ -463,6 +471,8 @@ export default function App() {
                   }
                 }
               }}
+              aria-label="Abrir vista previa en nueva pestaña"
+              title="Vista Previa"
               className="flex items-center gap-2 px-4 py-2 text-slate-600 hover:text-slate-900 font-medium transition-colors"
             >
               <Eye size={18} />
@@ -470,6 +480,8 @@ export default function App() {
             </button>
             <button 
               onClick={() => alert('¡Landing page guardada exitosamente!')}
+              aria-label="Guardar cambios"
+              title="Guardar"
               className="flex items-center gap-2 px-5 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-all shadow-md shadow-indigo-100"
             >
               <Save size={18} />
@@ -630,8 +642,17 @@ export default function App() {
                               initial={{ opacity: 0, x: -10 }}
                               animate={{ opacity: 1, x: 0 }}
                               exit={{ opacity: 0, x: -10 }}
-                              className={`group flex items-center gap-3 p-3 rounded-xl border transition-all cursor-pointer ${activeSectionId === section.id ? 'bg-indigo-50 border-indigo-200 text-indigo-700' : 'bg-white border-slate-100 hover:border-slate-300 text-slate-600'}`}
+                              className={`group flex items-center gap-3 p-3 rounded-xl border transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none ${activeSectionId === section.id ? 'bg-indigo-50 border-indigo-200 text-indigo-700' : 'bg-white border-slate-100 hover:border-slate-300 text-slate-600'}`}
                               onClick={() => setActiveSectionId(section.id)}
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                  e.preventDefault();
+                                  setActiveSectionId(section.id);
+                                }
+                              }}
+                              tabIndex={0}
+                              role="button"
+                              aria-label={`Editar sección ${SECTION_TYPES.find(t => t.type === section.type)?.label}`}
                             >
                               <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center shrink-0 group-hover:bg-white transition-colors">
                                 {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'Layout' && <Layout size={16} />}
@@ -648,7 +669,9 @@ export default function App() {
                               </span>
                               <button 
                                 onClick={(e) => { e.stopPropagation(); removeSection(section.id); }}
-                                className="opacity-0 group-hover:opacity-100 p-1.5 hover:bg-red-50 hover:text-red-600 rounded-md transition-all"
+                                aria-label="Eliminar sección"
+                                title="Eliminar sección"
+                                className="opacity-0 group-hover:opacity-100 focus-within:opacity-100 p-1.5 hover:bg-red-50 hover:text-red-600 rounded-md transition-all"
                               >
                                 <Trash2 size={14} />
                               </button>
@@ -973,12 +996,25 @@ export default function App() {
                     pageData.sections.map((section) => (
                       <div 
                         key={section.id} 
-                        className={`relative group ${activeSectionId === section.id ? 'ring-2 ring-indigo-500 ring-inset' : ''}`}
+                        className={`relative group focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none ${activeSectionId === section.id ? 'ring-2 ring-indigo-500 ring-inset' : ''}`}
                         onClick={() => setActiveSectionId(section.id)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            setActiveSectionId(section.id);
+                          }
+                        }}
+                        tabIndex={0}
+                        role="button"
+                        aria-label={`Seleccionar sección ${SECTION_TYPES.find(t => t.type === section.type)?.label}`}
                       >
                         {renderSectionPreview(section)}
-                        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2">
-                          <button className="p-2 bg-white shadow-lg rounded-lg text-slate-600 hover:text-indigo-600">
+                        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 focus-within:opacity-100 transition-opacity flex gap-2">
+                          <button
+                            aria-label="Configuración de sección"
+                            title="Configuración de sección"
+                            className="p-2 bg-white shadow-lg rounded-lg text-slate-600 hover:text-indigo-600"
+                          >
                             <Settings size={16} />
                           </button>
                         </div>
