@@ -382,18 +382,24 @@ export default function App() {
             <div className="flex bg-slate-100 p-1 rounded-lg">
               <button 
                 onClick={() => setPreviewDevice('desktop')}
+                aria-label="Vista de escritorio"
+                title="Vista de escritorio"
                 className={`p-1.5 rounded-md transition-all ${previewDevice === 'desktop' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
               >
                 <Monitor size={18} />
               </button>
               <button 
                 onClick={() => setPreviewDevice('tablet')}
+                aria-label="Vista de tableta"
+                title="Vista de tableta"
                 className={`p-1.5 rounded-md transition-all ${previewDevice === 'tablet' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
               >
                 <Tablet size={18} />
               </button>
               <button 
                 onClick={() => setPreviewDevice('mobile')}
+                aria-label="Vista de móvil"
+                title="Vista de móvil"
                 className={`p-1.5 rounded-md transition-all ${previewDevice === 'mobile' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
               >
                 <Smartphone size={18} />
@@ -630,8 +636,16 @@ export default function App() {
                               initial={{ opacity: 0, x: -10 }}
                               animate={{ opacity: 1, x: 0 }}
                               exit={{ opacity: 0, x: -10 }}
-                              className={`group flex items-center gap-3 p-3 rounded-xl border transition-all cursor-pointer ${activeSectionId === section.id ? 'bg-indigo-50 border-indigo-200 text-indigo-700' : 'bg-white border-slate-100 hover:border-slate-300 text-slate-600'}`}
+                              className={`group flex items-center gap-3 p-3 rounded-xl border transition-all cursor-pointer ${activeSectionId === section.id ? 'bg-indigo-50 border-indigo-200 text-indigo-700' : 'bg-white border-slate-100 hover:border-slate-300 text-slate-600'} focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none`}
                               onClick={() => setActiveSectionId(section.id)}
+                              tabIndex={0}
+                              role="button"
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                  e.preventDefault();
+                                  setActiveSectionId(section.id);
+                                }
+                              }}
                             >
                               <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center shrink-0 group-hover:bg-white transition-colors">
                                 {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'Layout' && <Layout size={16} />}
@@ -648,6 +662,9 @@ export default function App() {
                               </span>
                               <button 
                                 onClick={(e) => { e.stopPropagation(); removeSection(section.id); }}
+                                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') e.stopPropagation(); }}
+                                aria-label="Eliminar sección"
+                                title="Eliminar sección"
                                 className="opacity-0 group-hover:opacity-100 p-1.5 hover:bg-red-50 hover:text-red-600 rounded-md transition-all"
                               >
                                 <Trash2 size={14} />
@@ -687,32 +704,35 @@ export default function App() {
                   {activeTab === 'branding' && (
                     <div className="space-y-6 animate-in">
                       <div>
-                        <label className="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-3">Colores de Marca</label>
+                        <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-3">Colores de Marca</span>
                         <div className="space-y-3">
                           <div className="flex items-center gap-3">
                             <input 
+                              id="primary-color"
                               type="color" 
                               value={pageData.theme.primaryColor} 
                               onChange={(e) => setPageData(prev => ({ ...prev, theme: { ...prev.theme, primaryColor: e.target.value } }))}
                               className="w-10 h-10 rounded-lg cursor-pointer"
                             />
-                            <span className="text-sm font-medium">Primario</span>
+                            <label htmlFor="primary-color" className="text-sm font-medium cursor-pointer">Primario</label>
                           </div>
                           <div className="flex items-center gap-3">
                             <input 
+                              id="secondary-color"
                               type="color" 
                               value={pageData.theme.secondaryColor} 
                               onChange={(e) => setPageData(prev => ({ ...prev, theme: { ...prev.theme, secondaryColor: e.target.value } }))}
                               className="w-10 h-10 rounded-lg cursor-pointer"
                             />
-                            <span className="text-sm font-medium">Secundario</span>
+                            <label htmlFor="secondary-color" className="text-sm font-medium cursor-pointer">Secundario</label>
                           </div>
                         </div>
                       </div>
 
                       <div>
-                        <label className="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-3">Tipografía</label>
+                        <label htmlFor="font-family" className="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-3">Tipografía</label>
                         <select 
+                          id="font-family"
                           value={pageData.theme.fontFamily}
                           onChange={(e) => setPageData(prev => ({ ...prev, theme: { ...prev.theme, fontFamily: e.target.value } }))}
                           className="w-full p-2 rounded-lg border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-indigo-500"
@@ -755,8 +775,9 @@ export default function App() {
 
                       <div className="space-y-4">
                         <div>
-                          <label className="text-xs font-bold text-slate-500 mb-1 block">Tipo de Negocio</label>
+                          <label htmlFor="ai-business" className="text-xs font-bold text-slate-500 mb-1 block">Tipo de Negocio</label>
                           <input 
+                            id="ai-business"
                             type="text" 
                             placeholder="Ej: Agencia de viajes, SaaS de RRHH..."
                             className="w-full p-2 rounded-lg border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-indigo-500"
@@ -765,8 +786,9 @@ export default function App() {
                           />
                         </div>
                         <div>
-                          <label className="text-xs font-bold text-slate-500 mb-1 block">Objetivo</label>
+                          <label htmlFor="ai-goal" className="text-xs font-bold text-slate-500 mb-1 block">Objetivo</label>
                           <input 
+                            id="ai-goal"
                             type="text" 
                             placeholder="Ej: Conseguir leads, vender curso..."
                             className="w-full p-2 rounded-lg border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-indigo-500"
@@ -775,8 +797,9 @@ export default function App() {
                           />
                         </div>
                         <div>
-                          <label className="text-xs font-bold text-slate-500 mb-1 block">Público Objetivo</label>
+                          <label htmlFor="ai-audience" className="text-xs font-bold text-slate-500 mb-1 block">Público Objetivo</label>
                           <input 
+                            id="ai-audience"
                             type="text" 
                             placeholder="Ej: Emprendedores jóvenes, padres..."
                             className="w-full p-2 rounded-lg border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-indigo-500"
@@ -878,7 +901,12 @@ export default function App() {
                     >
                       <div className="flex items-center justify-between mb-4">
                         <h4 className="font-bold text-sm text-slate-700">Editar {SECTION_TYPES.find(t => t.type === activeSection?.type)?.label}</h4>
-                        <button onClick={() => setActiveSectionId(null)} className="text-slate-400 hover:text-slate-600">
+                        <button
+                          onClick={() => setActiveSectionId(null)}
+                          aria-label="Cerrar editor"
+                          title="Cerrar editor"
+                          className="text-slate-400 hover:text-slate-600"
+                        >
                           <ChevronRight size={18} />
                         </button>
                       </div>
@@ -973,12 +1001,16 @@ export default function App() {
                     pageData.sections.map((section) => (
                       <div 
                         key={section.id} 
-                        className={`relative group ${activeSectionId === section.id ? 'ring-2 ring-indigo-500 ring-inset' : ''}`}
+                        className={`relative group ${activeSectionId === section.id ? 'ring-2 ring-indigo-500 ring-inset' : ''} focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-inset focus-within:outline-none`}
                         onClick={() => setActiveSectionId(section.id)}
                       >
                         {renderSectionPreview(section)}
-                        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2">
-                          <button className="p-2 bg-white shadow-lg rounded-lg text-slate-600 hover:text-indigo-600">
+                        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 focus-within:opacity-100 transition-opacity flex gap-2">
+                          <button
+                            aria-label="Configuración de sección"
+                            title="Configuración de sección"
+                            className="p-2 bg-white shadow-lg rounded-lg text-slate-600 hover:text-indigo-600 focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-indigo-500 outline-none"
+                          >
                             <Settings size={16} />
                           </button>
                         </div>
