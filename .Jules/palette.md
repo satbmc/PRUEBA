@@ -1,0 +1,3 @@
+## 2025-05-15 - Discoverability of Hover-Only Actions for Keyboard Users
+**Learning:** In the landing page editor, critical actions like "Delete Section" and "Section Settings" were only visible on hover. This made them completely inaccessible and undiscoverable for keyboard-only users, as tabbing through the interface did not reveal their existence or functionality.
+**Action:** Always pair `hover:opacity-100` with `group-focus-within:opacity-100` (on the parent) and `focus-visible:opacity-100` (on the element itself) to ensure interactive controls become visible when they or their container receive keyboard focus. Ensure `motion.div` interactive elements have `tabIndex`, `role`, and `onKeyDown` handlers.

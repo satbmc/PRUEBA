@@ -382,19 +382,25 @@ export default function App() {
             <div className="flex bg-slate-100 p-1 rounded-lg">
               <button 
                 onClick={() => setPreviewDevice('desktop')}
-                className={`p-1.5 rounded-md transition-all ${previewDevice === 'desktop' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
+                aria-label="Vista de escritorio"
+                title="Vista de escritorio"
+                className={`p-1.5 rounded-md transition-all focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none ${previewDevice === 'desktop' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
               >
                 <Monitor size={18} />
               </button>
               <button 
                 onClick={() => setPreviewDevice('tablet')}
-                className={`p-1.5 rounded-md transition-all ${previewDevice === 'tablet' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
+                aria-label="Vista de tableta"
+                title="Vista de tableta"
+                className={`p-1.5 rounded-md transition-all focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none ${previewDevice === 'tablet' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
               >
                 <Tablet size={18} />
               </button>
               <button 
                 onClick={() => setPreviewDevice('mobile')}
-                className={`p-1.5 rounded-md transition-all ${previewDevice === 'mobile' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
+                aria-label="Vista de móvil"
+                title="Vista de móvil"
+                className={`p-1.5 rounded-md transition-all focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none ${previewDevice === 'mobile' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
               >
                 <Smartphone size={18} />
               </button>
@@ -630,8 +636,18 @@ export default function App() {
                               initial={{ opacity: 0, x: -10 }}
                               animate={{ opacity: 1, x: 0 }}
                               exit={{ opacity: 0, x: -10 }}
-                              className={`group flex items-center gap-3 p-3 rounded-xl border transition-all cursor-pointer ${activeSectionId === section.id ? 'bg-indigo-50 border-indigo-200 text-indigo-700' : 'bg-white border-slate-100 hover:border-slate-300 text-slate-600'}`}
+                              className={`group flex items-center gap-3 p-3 rounded-xl border transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none ${activeSectionId === section.id ? 'bg-indigo-50 border-indigo-200 text-indigo-700' : 'bg-white border-slate-100 hover:border-slate-300 text-slate-600'}`}
                               onClick={() => setActiveSectionId(section.id)}
+                              tabIndex={0}
+                              role="button"
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                  if (e.target === e.currentTarget) {
+                                    e.preventDefault();
+                                    setActiveSectionId(section.id);
+                                  }
+                                }
+                              }}
                             >
                               <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center shrink-0 group-hover:bg-white transition-colors">
                                 {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'Layout' && <Layout size={16} />}
@@ -648,7 +664,9 @@ export default function App() {
                               </span>
                               <button 
                                 onClick={(e) => { e.stopPropagation(); removeSection(section.id); }}
-                                className="opacity-0 group-hover:opacity-100 p-1.5 hover:bg-red-50 hover:text-red-600 rounded-md transition-all"
+                                aria-label="Eliminar sección"
+                                title="Eliminar sección"
+                                className="opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 p-1.5 hover:bg-red-50 hover:text-red-600 rounded-md transition-all focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none focus-visible:opacity-100"
                               >
                                 <Trash2 size={14} />
                               </button>
@@ -878,7 +896,12 @@ export default function App() {
                     >
                       <div className="flex items-center justify-between mb-4">
                         <h4 className="font-bold text-sm text-slate-700">Editar {SECTION_TYPES.find(t => t.type === activeSection?.type)?.label}</h4>
-                        <button onClick={() => setActiveSectionId(null)} className="text-slate-400 hover:text-slate-600">
+                        <button
+                          onClick={() => setActiveSectionId(null)}
+                          aria-label="Cerrar editor"
+                          title="Cerrar editor"
+                          className="text-slate-400 hover:text-slate-600 transition-all focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none rounded-md"
+                        >
                           <ChevronRight size={18} />
                         </button>
                       </div>
@@ -977,8 +1000,12 @@ export default function App() {
                         onClick={() => setActiveSectionId(section.id)}
                       >
                         {renderSectionPreview(section)}
-                        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2">
-                          <button className="p-2 bg-white shadow-lg rounded-lg text-slate-600 hover:text-indigo-600">
+                        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity flex gap-2">
+                          <button
+                            aria-label="Configuración de sección"
+                            title="Configuración de sección"
+                            className="p-2 bg-white shadow-lg rounded-lg text-slate-600 hover:text-indigo-600 transition-all focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none focus-visible:opacity-100"
+                          >
                             <Settings size={16} />
                           </button>
                         </div>
