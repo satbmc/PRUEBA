@@ -1,0 +1,3 @@
+## 2025-05-22 - Keyboard accessibility for nested interactive sidebar items
+**Learning:** When implementing keyboard accessibility for nested interactive elements (like a delete button inside a clickable card), `onKeyDown` handlers on the child element must include `e.stopPropagation()` and `e.preventDefault()` to prevent triggering the parent's keyboard action. Additionally, `group-focus-within` is essential to reveal elements that are otherwise only visible on hover.
+**Action:** Always use `e.stopPropagation()` in `onKeyDown` for nested buttons and use `group-focus-within` for child element visibility on focus.
