@@ -1,0 +1,3 @@
+## 2025-05-14 - Interactive Container Keyboard Accessibility
+**Learning:** When making non-semantic elements (like `div`) interactive via `onClick`, they must also be made keyboard-accessible using `role="button"`, `tabIndex={0}`, and an `onKeyDown` handler. Importantly, to avoid double-triggers from nested buttons (which natively handle keyboard events), the container's `onKeyDown` should check if `e.target === e.currentTarget` or nested buttons must use `e.stopPropagation()`.
+**Action:** Always pair `onClick` on generic elements with ARIA roles and keyboard listeners, ensuring nested interactive elements are correctly handled to prevent event bubbling issues.
