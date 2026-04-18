@@ -1,0 +1,3 @@
+## 2025-05-14 - Accessible Nested Interactions in Landing Page Builders
+**Learning:** In highly interactive visual editors, non-semantic containers (like `motion.div` section blocks) often lack keyboard accessibility. When making these accessible via `tabIndex={0}`, nested icon-buttons (like 'Delete') must be handled with `group-focus-within` to remain visible when their parent receives keyboard focus, and `e.stopPropagation()` is critical in `onKeyDown` to prevent triggering the parent's selection logic.
+**Action:** Always apply `group` to interactive containers and `group-focus-within:opacity-100` to their hidden child actions, while ensuring all keyboard events in children stop propagation.
