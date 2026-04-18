@@ -382,19 +382,25 @@ export default function App() {
             <div className="flex bg-slate-100 p-1 rounded-lg">
               <button 
                 onClick={() => setPreviewDevice('desktop')}
-                className={`p-1.5 rounded-md transition-all ${previewDevice === 'desktop' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
+                aria-label="Vista de escritorio"
+                title="Vista de escritorio"
+                className={`p-1.5 rounded-md transition-all focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none ${previewDevice === 'desktop' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
               >
                 <Monitor size={18} />
               </button>
               <button 
                 onClick={() => setPreviewDevice('tablet')}
-                className={`p-1.5 rounded-md transition-all ${previewDevice === 'tablet' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
+                aria-label="Vista de tableta"
+                title="Vista de tableta"
+                className={`p-1.5 rounded-md transition-all focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none ${previewDevice === 'tablet' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
               >
                 <Tablet size={18} />
               </button>
               <button 
                 onClick={() => setPreviewDevice('mobile')}
-                className={`p-1.5 rounded-md transition-all ${previewDevice === 'mobile' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
+                aria-label="Vista de móvil"
+                title="Vista de móvil"
+                className={`p-1.5 rounded-md transition-all focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none ${previewDevice === 'mobile' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
               >
                 <Smartphone size={18} />
               </button>
@@ -427,7 +433,7 @@ export default function App() {
                   a.click();
                 }
               }}
-              className="flex items-center gap-2 px-4 py-2 text-slate-600 hover:text-slate-900 font-medium transition-colors"
+              className="flex items-center gap-2 px-4 py-2 text-slate-600 hover:text-slate-900 font-medium transition-colors focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none rounded-lg"
             >
               <Download size={18} />
               Exportar
@@ -463,14 +469,14 @@ export default function App() {
                   }
                 }
               }}
-              className="flex items-center gap-2 px-4 py-2 text-slate-600 hover:text-slate-900 font-medium transition-colors"
+              className="flex items-center gap-2 px-4 py-2 text-slate-600 hover:text-slate-900 font-medium transition-colors focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none rounded-lg"
             >
               <Eye size={18} />
               Vista Previa
             </button>
             <button 
               onClick={() => alert('¡Landing page guardada exitosamente!')}
-              className="flex items-center gap-2 px-5 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-all shadow-md shadow-indigo-100"
+              className="flex items-center gap-2 px-5 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-all shadow-md shadow-indigo-100 focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none focus-visible:ring-offset-2"
             >
               <Save size={18} />
               Guardar
@@ -504,12 +510,12 @@ export default function App() {
                 <div className="flex items-center justify-center gap-6">
                   <button 
                     onClick={() => setStep('template')}
-                    className="px-8 py-4 bg-indigo-600 text-white rounded-2xl font-bold text-lg hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-200 flex items-center gap-3 group"
+                    className="px-8 py-4 bg-indigo-600 text-white rounded-2xl font-bold text-lg hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-200 flex items-center gap-3 group focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none focus-visible:ring-offset-4"
                   >
                     Empezar ahora
                     <ArrowRight className="group-hover:translate-x-1 transition-transform" />
                   </button>
-                  <button className="px-8 py-4 bg-white text-slate-700 border border-slate-200 rounded-2xl font-bold text-lg hover:bg-slate-50 transition-all">
+                  <button className="px-8 py-4 bg-white text-slate-700 border border-slate-200 rounded-2xl font-bold text-lg hover:bg-slate-50 transition-all focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:outline-none focus-visible:ring-offset-4">
                     Ver ejemplos
                   </button>
                 </div>
@@ -529,7 +535,7 @@ export default function App() {
                 <div className="mb-12">
                   <button 
                     onClick={() => setStep('welcome')}
-                    className="flex items-center gap-2 text-slate-500 hover:text-slate-700 mb-4 font-medium"
+                    className="flex items-center gap-2 text-slate-500 hover:text-slate-700 mb-4 font-medium focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none rounded-md"
                   >
                     <ChevronLeft size={20} />
                     Volver
@@ -589,28 +595,28 @@ export default function App() {
                 <div className="flex border-b border-slate-100">
                   <button 
                     onClick={() => setActiveTab('structure')}
-                    className={`flex-1 p-3 text-xs font-bold uppercase tracking-wider transition-colors ${activeTab === 'structure' ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-slate-400 hover:text-slate-600'}`}
+                    className={`flex-1 p-3 text-xs font-bold uppercase tracking-wider transition-colors focus-visible:bg-slate-50 focus-visible:outline-none ${activeTab === 'structure' ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-slate-400 hover:text-slate-600'}`}
                   >
                     <Layout size={16} className="mx-auto mb-1" />
                     Diseño
                   </button>
                   <button 
                     onClick={() => setActiveTab('branding')}
-                    className={`flex-1 p-3 text-xs font-bold uppercase tracking-wider transition-colors ${activeTab === 'branding' ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-slate-400 hover:text-slate-600'}`}
+                    className={`flex-1 p-3 text-xs font-bold uppercase tracking-wider transition-colors focus-visible:bg-slate-50 focus-visible:outline-none ${activeTab === 'branding' ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-slate-400 hover:text-slate-600'}`}
                   >
                     <Palette size={16} className="mx-auto mb-1" />
                     Marca
                   </button>
                   <button 
                     onClick={() => setActiveTab('ai')}
-                    className={`flex-1 p-3 text-xs font-bold uppercase tracking-wider transition-colors ${activeTab === 'ai' ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-slate-400 hover:text-slate-600'}`}
+                    className={`flex-1 p-3 text-xs font-bold uppercase tracking-wider transition-colors focus-visible:bg-slate-50 focus-visible:outline-none ${activeTab === 'ai' ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-slate-400 hover:text-slate-600'}`}
                   >
                     <Wand2 size={16} className="mx-auto mb-1" />
                     IA
                   </button>
                   <button 
                     onClick={() => setActiveTab('ab')}
-                    className={`flex-1 p-3 text-xs font-bold uppercase tracking-wider transition-colors ${activeTab === 'ab' ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-slate-400 hover:text-slate-600'}`}
+                    className={`flex-1 p-3 text-xs font-bold uppercase tracking-wider transition-colors focus-visible:bg-slate-50 focus-visible:outline-none ${activeTab === 'ab' ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-slate-400 hover:text-slate-600'}`}
                   >
                     <FlaskConical size={16} className="mx-auto mb-1" />
                     A/B
@@ -630,7 +636,15 @@ export default function App() {
                               initial={{ opacity: 0, x: -10 }}
                               animate={{ opacity: 1, x: 0 }}
                               exit={{ opacity: 0, x: -10 }}
-                              className={`group flex items-center gap-3 p-3 rounded-xl border transition-all cursor-pointer ${activeSectionId === section.id ? 'bg-indigo-50 border-indigo-200 text-indigo-700' : 'bg-white border-slate-100 hover:border-slate-300 text-slate-600'}`}
+                              role="button"
+                              tabIndex={0}
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                  e.preventDefault();
+                                  setActiveSectionId(section.id);
+                                }
+                              }}
+                              className={`group flex items-center gap-3 p-3 rounded-xl border transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none ${activeSectionId === section.id ? 'bg-indigo-50 border-indigo-200 text-indigo-700' : 'bg-white border-slate-100 hover:border-slate-300 text-slate-600'}`}
                               onClick={() => setActiveSectionId(section.id)}
                             >
                               <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center shrink-0 group-hover:bg-white transition-colors">
@@ -648,7 +662,16 @@ export default function App() {
                               </span>
                               <button 
                                 onClick={(e) => { e.stopPropagation(); removeSection(section.id); }}
-                                className="opacity-0 group-hover:opacity-100 p-1.5 hover:bg-red-50 hover:text-red-600 rounded-md transition-all"
+                                onKeyDown={(e) => {
+                                  if (e.key === 'Enter' || e.key === ' ') {
+                                    e.stopPropagation();
+                                    e.preventDefault();
+                                    removeSection(section.id);
+                                  }
+                                }}
+                                aria-label="Eliminar sección"
+                                title="Eliminar sección"
+                                className="opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 focus-visible:opacity-100 p-1.5 hover:bg-red-50 hover:text-red-600 rounded-md transition-all focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none"
                               >
                                 <Trash2 size={14} />
                               </button>
@@ -664,7 +687,7 @@ export default function App() {
                             <button 
                               key={type.type}
                               onClick={() => addSection(type.type)}
-                              className="flex flex-col items-center gap-2 p-3 rounded-xl border border-slate-100 hover:border-indigo-200 hover:bg-indigo-50 transition-all group"
+                              className="flex flex-col items-center gap-2 p-3 rounded-xl border border-slate-100 hover:border-indigo-200 hover:bg-indigo-50 transition-all group focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none"
                             >
                               <div className="text-slate-400 group-hover:text-indigo-600 transition-colors">
                                 {type.icon === 'Layout' && <Layout size={20} />}
@@ -878,7 +901,12 @@ export default function App() {
                     >
                       <div className="flex items-center justify-between mb-4">
                         <h4 className="font-bold text-sm text-slate-700">Editar {SECTION_TYPES.find(t => t.type === activeSection?.type)?.label}</h4>
-                        <button onClick={() => setActiveSectionId(null)} className="text-slate-400 hover:text-slate-600">
+                        <button
+                          onClick={() => setActiveSectionId(null)}
+                          aria-label="Cerrar editor"
+                          title="Cerrar editor"
+                          className="text-slate-400 hover:text-slate-600 p-1 rounded-md transition-all focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none"
+                        >
                           <ChevronRight size={18} />
                         </button>
                       </div>
@@ -973,12 +1001,24 @@ export default function App() {
                     pageData.sections.map((section) => (
                       <div 
                         key={section.id} 
-                        className={`relative group ${activeSectionId === section.id ? 'ring-2 ring-indigo-500 ring-inset' : ''}`}
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            setActiveSectionId(section.id);
+                          }
+                        }}
+                        className={`relative group focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-inset focus-visible:outline-none transition-all ${activeSectionId === section.id ? 'ring-2 ring-indigo-500 ring-inset' : ''}`}
                         onClick={() => setActiveSectionId(section.id)}
                       >
                         {renderSectionPreview(section)}
-                        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2">
-                          <button className="p-2 bg-white shadow-lg rounded-lg text-slate-600 hover:text-indigo-600">
+                        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity flex gap-2">
+                          <button
+                            aria-label="Configuración de sección"
+                            title="Configuración de sección"
+                            className="p-2 bg-white shadow-lg rounded-lg text-slate-600 hover:text-indigo-600 focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none transition-all"
+                          >
                             <Settings size={16} />
                           </button>
                         </div>
