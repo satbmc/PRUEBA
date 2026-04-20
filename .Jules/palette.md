@@ -1,0 +1,3 @@
+## 2025-05-14 - Accessible Section List Items
+**Learning:** Nesting interactive elements (e.g., a delete button inside a focusable card div) is a significant accessibility violation that confuses screen readers and breaks keyboard navigation. Native `<button>` elements also handle 'Enter' and 'Space' keys automatically, making manual `onKeyDown` handlers redundant and potentially buggy on semantic buttons.
+**Action:** Use a flat structure with a common container and adjacent semantic `<button>` elements. Use Tailwind's `group` and `focus-visible` classes to manage the visibility of secondary actions (like delete buttons) upon parent hover or child focus.
