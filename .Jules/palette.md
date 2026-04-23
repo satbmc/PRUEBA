@@ -1,0 +1,3 @@
+## 2026-04-23 - Accessibility of Interactive Container Actions
+**Learning:** For elements hidden by default (like 'Delete' buttons appearing on hover), use Tailwind's `group-focus-within:opacity-100` on the child alongside `group` on the parent. This ensures keyboard users can see the action when they tab into the container. Additionally, avoid nesting interactive elements (e.g., a button inside a clickable div); use adjacent semantic buttons within a common container to ensure correct screen reader behavior and focus order.
+**Action:** Use the "common container with adjacent buttons" pattern for list items that have multiple actions, and always ensure hidden actions are revealed on focus.
