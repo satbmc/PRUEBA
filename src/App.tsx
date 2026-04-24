@@ -382,19 +382,25 @@ export default function App() {
             <div className="flex bg-slate-100 p-1 rounded-lg">
               <button 
                 onClick={() => setPreviewDevice('desktop')}
-                className={`p-1.5 rounded-md transition-all ${previewDevice === 'desktop' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
+                aria-label="Vista de escritorio"
+                title="Vista de escritorio"
+                className={`p-1.5 rounded-md transition-all focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none ${previewDevice === 'desktop' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
               >
                 <Monitor size={18} />
               </button>
               <button 
                 onClick={() => setPreviewDevice('tablet')}
-                className={`p-1.5 rounded-md transition-all ${previewDevice === 'tablet' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
+                aria-label="Vista de tableta"
+                title="Vista de tableta"
+                className={`p-1.5 rounded-md transition-all focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none ${previewDevice === 'tablet' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
               >
                 <Tablet size={18} />
               </button>
               <button 
                 onClick={() => setPreviewDevice('mobile')}
-                className={`p-1.5 rounded-md transition-all ${previewDevice === 'mobile' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
+                aria-label="Vista de móvil"
+                title="Vista de móvil"
+                className={`p-1.5 rounded-md transition-all focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none ${previewDevice === 'mobile' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
               >
                 <Smartphone size={18} />
               </button>
