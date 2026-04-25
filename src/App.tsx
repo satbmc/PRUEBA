@@ -630,25 +630,32 @@ export default function App() {
                               initial={{ opacity: 0, x: -10 }}
                               animate={{ opacity: 1, x: 0 }}
                               exit={{ opacity: 0, x: -10 }}
-                              className={`group flex items-center gap-3 p-3 rounded-xl border transition-all cursor-pointer ${activeSectionId === section.id ? 'bg-indigo-50 border-indigo-200 text-indigo-700' : 'bg-white border-slate-100 hover:border-slate-300 text-slate-600'}`}
-                              onClick={() => setActiveSectionId(section.id)}
+                              className={`group flex items-center gap-2 p-1 rounded-xl border transition-all ${activeSectionId === section.id ? 'bg-indigo-50 border-indigo-200 text-indigo-700' : 'bg-white border-slate-100 hover:border-slate-300 text-slate-600'}`}
                             >
-                              <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center shrink-0 group-hover:bg-white transition-colors">
-                                {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'Layout' && <Layout size={16} />}
-                                {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'CheckCircle' && <CheckCircle size={16} />}
-                                {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'MessageSquare' && <MessageSquare size={16} />}
-                                {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'CreditCard' && <CreditCard size={16} />}
-                                {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'Image' && <ImageIcon size={16} />}
-                                {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'HelpCircle' && <HelpCircle size={16} />}
-                                {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'Mail' && <Mail size={16} />}
-                                {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'Type' && <Type size={16} />}
-                              </div>
-                              <span className="flex-1 font-medium text-sm truncate">
-                                {SECTION_TYPES.find(t => t.type === section.type)?.label}
-                              </span>
+                              <button
+                                onClick={() => setActiveSectionId(section.id)}
+                                aria-label={`Seleccionar sección ${SECTION_TYPES.find(t => t.type === section.type)?.label}`}
+                                className="flex flex-1 items-center gap-3 p-2 rounded-lg transition-all text-left focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none"
+                              >
+                                <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center shrink-0 group-hover:bg-white transition-colors">
+                                  {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'Layout' && <Layout size={16} />}
+                                  {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'CheckCircle' && <CheckCircle size={16} />}
+                                  {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'MessageSquare' && <MessageSquare size={16} />}
+                                  {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'CreditCard' && <CreditCard size={16} />}
+                                  {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'Image' && <ImageIcon size={16} />}
+                                  {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'HelpCircle' && <HelpCircle size={16} />}
+                                  {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'Mail' && <Mail size={16} />}
+                                  {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'Type' && <Type size={16} />}
+                                </div>
+                                <span className="flex-1 font-medium text-sm truncate">
+                                  {SECTION_TYPES.find(t => t.type === section.type)?.label}
+                                </span>
+                              </button>
                               <button 
-                                onClick={(e) => { e.stopPropagation(); removeSection(section.id); }}
-                                className="opacity-0 group-hover:opacity-100 p-1.5 hover:bg-red-50 hover:text-red-600 rounded-md transition-all"
+                                onClick={() => removeSection(section.id)}
+                                aria-label="Eliminar sección"
+                                title="Eliminar sección"
+                                className="opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 focus-visible:opacity-100 p-1.5 hover:bg-red-50 hover:text-red-600 rounded-md transition-all focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none mr-1"
                               >
                                 <Trash2 size={14} />
                               </button>
