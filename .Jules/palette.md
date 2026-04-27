@@ -1,0 +1,3 @@
+## 2025-05-15 - Accessibilidad de elementos ocultos (hover)
+**Learning:** Los elementos que solo aparecen al pasar el ratón (hover) son inaccesibles para usuarios de teclado a menos que se fuerce su visibilidad al recibir el foco. El patrón `group-focus-within:opacity-100` en el contenedor padre, combinado con `focus-visible` en el elemento hijo, resuelve este problema de forma elegante en Tailwind.
+**Action:** Aplicar siempre `group-focus-within` en contenedores que tengan acciones "ocultas" (como botones de borrar o configurar) para garantizar que los usuarios de teclado puedan ver y activar estas acciones.
