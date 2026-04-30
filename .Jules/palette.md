@@ -1,0 +1,3 @@
+## 2025-04-30 - Accesibilidad por teclado en editores visuales
+**Learning:** En herramientas de construcción visual (builders) donde las secciones son contenedores interactivos no semánticos, el uso de `group-focus-within` permite revelar controles que normalmente solo aparecen al pasar el ratón (como botones de configuración o eliminación) a los usuarios que navegan por teclado. Esto mantiene una interfaz limpia para usuarios de ratón sin comprometer la accesibilidad.
+**Action:** Aplicar siempre `tabIndex={0}`, `role="button"` y manejadores `onKeyDown` a los contenedores de secciones en el lienzo, y asegurar que sus botones de acción internos sean visibles mediante `group-focus-within:opacity-100` o clases similares cuando el contenedor recibe el foco.
