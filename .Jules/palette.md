@@ -1,0 +1,3 @@
+## 2025-05-14 - Accessibility for Icon-only Buttons
+**Learning:** Icon-only buttons without text labels are inaccessible to screen reader users and lack visual context for sighted users without hover. Standardizing on `aria-label` and `title` for these elements significantly improves basic accessibility and provides helpful tooltips. Visible focus rings are also essential for keyboard users to identify their location in the editor.
+**Action:** Always include `aria-label`, `title`, and `focus-visible` ring styles when implementing icon-only buttons. Ensure ARIA labels are localized in the same language as the rest of the application interface.
