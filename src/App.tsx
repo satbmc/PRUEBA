@@ -62,7 +62,7 @@ const HeroSection = ({ content, theme }: { content: any; theme: any }) => (
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.2 }}
-        className="px-8 py-4 text-white font-semibold shadow-lg hover:opacity-90 transition-all"
+        className="px-8 py-4 text-white font-semibold shadow-lg hover:opacity-90 transition-all outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500"
         style={{ backgroundColor: theme.primaryColor, borderRadius: theme.borderRadius }}
       >
         {content.ctaText || 'Empezar ahora'}
@@ -180,7 +180,7 @@ const PricingSection = ({ content, theme }: { content: any; theme: any }) => (
               ))}
             </ul>
             <button 
-              className={`w-full py-3 rounded-xl font-bold transition-all ${plan.featured ? 'bg-indigo-600 text-white hover:bg-indigo-700' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'}`}
+              className={`w-full py-3 rounded-xl font-bold transition-all outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 ${plan.featured ? 'bg-indigo-600 text-white hover:bg-indigo-700' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'}`}
             >
               Elegir plan
             </button>
@@ -382,19 +382,25 @@ export default function App() {
             <div className="flex bg-slate-100 p-1 rounded-lg">
               <button 
                 onClick={() => setPreviewDevice('desktop')}
-                className={`p-1.5 rounded-md transition-all ${previewDevice === 'desktop' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
+                aria-label="Vista de escritorio"
+                title="Vista de escritorio"
+                className={`p-1.5 rounded-md transition-all outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 ${previewDevice === 'desktop' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
               >
                 <Monitor size={18} />
               </button>
               <button 
                 onClick={() => setPreviewDevice('tablet')}
-                className={`p-1.5 rounded-md transition-all ${previewDevice === 'tablet' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
+                aria-label="Vista de tableta"
+                title="Vista de tableta"
+                className={`p-1.5 rounded-md transition-all outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 ${previewDevice === 'tablet' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
               >
                 <Tablet size={18} />
               </button>
               <button 
                 onClick={() => setPreviewDevice('mobile')}
-                className={`p-1.5 rounded-md transition-all ${previewDevice === 'mobile' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
+                aria-label="Vista de móvil"
+                title="Vista de móvil"
+                className={`p-1.5 rounded-md transition-all outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 ${previewDevice === 'mobile' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
               >
                 <Smartphone size={18} />
               </button>
@@ -427,7 +433,9 @@ export default function App() {
                   a.click();
                 }
               }}
-              className="flex items-center gap-2 px-4 py-2 text-slate-600 hover:text-slate-900 font-medium transition-colors"
+              aria-label="Exportar página"
+              title="Exportar página"
+              className="flex items-center gap-2 px-4 py-2 text-slate-600 hover:text-slate-900 font-medium transition-colors outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-lg"
             >
               <Download size={18} />
               Exportar
@@ -463,14 +471,18 @@ export default function App() {
                   }
                 }
               }}
-              className="flex items-center gap-2 px-4 py-2 text-slate-600 hover:text-slate-900 font-medium transition-colors"
+              aria-label="Vista previa"
+              title="Vista previa"
+              className="flex items-center gap-2 px-4 py-2 text-slate-600 hover:text-slate-900 font-medium transition-colors outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-lg"
             >
               <Eye size={18} />
               Vista Previa
             </button>
             <button 
               onClick={() => alert('¡Landing page guardada exitosamente!')}
-              className="flex items-center gap-2 px-5 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-all shadow-md shadow-indigo-100"
+              aria-label="Guardar cambios"
+              title="Guardar cambios"
+              className="flex items-center gap-2 px-5 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-all shadow-md shadow-indigo-100 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500"
             >
               <Save size={18} />
               Guardar
@@ -562,8 +574,11 @@ export default function App() {
                   ))}
                   
                   <div 
+                    role="button"
+                    tabIndex={0}
                     onClick={() => setStep('editor')}
-                    className="bg-slate-50 rounded-3xl border-2 border-dashed border-slate-300 flex flex-col items-center justify-center p-8 hover:border-indigo-400 hover:bg-indigo-50/30 transition-all cursor-pointer group"
+                    onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setStep('editor')}
+                    className="bg-slate-50 rounded-3xl border-2 border-dashed border-slate-300 flex flex-col items-center justify-center p-8 hover:border-indigo-400 hover:bg-indigo-50/30 transition-all cursor-pointer group outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
                   >
                     <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-slate-400 group-hover:text-indigo-600 group-hover:shadow-lg transition-all mb-4">
                       <Plus size={32} />
@@ -589,28 +604,28 @@ export default function App() {
                 <div className="flex border-b border-slate-100">
                   <button 
                     onClick={() => setActiveTab('structure')}
-                    className={`flex-1 p-3 text-xs font-bold uppercase tracking-wider transition-colors ${activeTab === 'structure' ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-slate-400 hover:text-slate-600'}`}
+                    className={`flex-1 p-3 text-xs font-bold uppercase tracking-wider transition-colors outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-indigo-600 ${activeTab === 'structure' ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-slate-400 hover:text-slate-600'}`}
                   >
                     <Layout size={16} className="mx-auto mb-1" />
                     Diseño
                   </button>
                   <button 
                     onClick={() => setActiveTab('branding')}
-                    className={`flex-1 p-3 text-xs font-bold uppercase tracking-wider transition-colors ${activeTab === 'branding' ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-slate-400 hover:text-slate-600'}`}
+                    className={`flex-1 p-3 text-xs font-bold uppercase tracking-wider transition-colors outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-indigo-600 ${activeTab === 'branding' ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-slate-400 hover:text-slate-600'}`}
                   >
                     <Palette size={16} className="mx-auto mb-1" />
                     Marca
                   </button>
                   <button 
                     onClick={() => setActiveTab('ai')}
-                    className={`flex-1 p-3 text-xs font-bold uppercase tracking-wider transition-colors ${activeTab === 'ai' ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-slate-400 hover:text-slate-600'}`}
+                    className={`flex-1 p-3 text-xs font-bold uppercase tracking-wider transition-colors outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-indigo-600 ${activeTab === 'ai' ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-slate-400 hover:text-slate-600'}`}
                   >
                     <Wand2 size={16} className="mx-auto mb-1" />
                     IA
                   </button>
                   <button 
                     onClick={() => setActiveTab('ab')}
-                    className={`flex-1 p-3 text-xs font-bold uppercase tracking-wider transition-colors ${activeTab === 'ab' ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-slate-400 hover:text-slate-600'}`}
+                    className={`flex-1 p-3 text-xs font-bold uppercase tracking-wider transition-colors outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-indigo-600 ${activeTab === 'ab' ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-slate-400 hover:text-slate-600'}`}
                   >
                     <FlaskConical size={16} className="mx-auto mb-1" />
                     A/B
@@ -623,37 +638,48 @@ export default function App() {
                       <div className="space-y-2">
                         <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Secciones</label>
                         <AnimatePresence>
-                          {pageData.sections.map((section, index) => (
-                            <motion.div 
-                              key={section.id}
-                              layout
-                              initial={{ opacity: 0, x: -10 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              exit={{ opacity: 0, x: -10 }}
-                              className={`group flex items-center gap-3 p-3 rounded-xl border transition-all cursor-pointer ${activeSectionId === section.id ? 'bg-indigo-50 border-indigo-200 text-indigo-700' : 'bg-white border-slate-100 hover:border-slate-300 text-slate-600'}`}
-                              onClick={() => setActiveSectionId(section.id)}
-                            >
-                              <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center shrink-0 group-hover:bg-white transition-colors">
-                                {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'Layout' && <Layout size={16} />}
-                                {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'CheckCircle' && <CheckCircle size={16} />}
-                                {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'MessageSquare' && <MessageSquare size={16} />}
-                                {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'CreditCard' && <CreditCard size={16} />}
-                                {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'Image' && <ImageIcon size={16} />}
-                                {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'HelpCircle' && <HelpCircle size={16} />}
-                                {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'Mail' && <Mail size={16} />}
-                                {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'Type' && <Type size={16} />}
-                              </div>
-                              <span className="flex-1 font-medium text-sm truncate">
-                                {SECTION_TYPES.find(t => t.type === section.type)?.label}
-                              </span>
-                              <button 
-                                onClick={(e) => { e.stopPropagation(); removeSection(section.id); }}
-                                className="opacity-0 group-hover:opacity-100 p-1.5 hover:bg-red-50 hover:text-red-600 rounded-md transition-all"
+                          {pageData.sections.map((section, index) => {
+                            const sectionLabel = SECTION_TYPES.find(t => t.type === section.type)?.label || 'Sección';
+                            return (
+                              <motion.div
+                                key={section.id}
+                                layout
+                                initial={{ opacity: 0, x: -10 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -10 }}
+                                className={`group flex items-center rounded-xl border transition-all ${activeSectionId === section.id ? 'bg-indigo-50 border-indigo-200' : 'bg-white border-slate-100 hover:border-slate-300'}`}
                               >
-                                <Trash2 size={14} />
-                              </button>
-                            </motion.div>
-                          ))}
+                                <button
+                                  onClick={() => setActiveSectionId(section.id)}
+                                  className={`flex-1 flex items-center gap-3 p-3 text-left outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-l-xl ${activeSectionId === section.id ? 'text-indigo-700' : 'text-slate-600'}`}
+                                  aria-label={`Seleccionar sección ${sectionLabel}`}
+                                  title={`Seleccionar ${sectionLabel}`}
+                                >
+                                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-colors ${activeSectionId === section.id ? 'bg-indigo-100' : 'bg-slate-100 group-hover:bg-white'}`}>
+                                    {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'Layout' && <Layout size={16} />}
+                                    {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'CheckCircle' && <CheckCircle size={16} />}
+                                    {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'MessageSquare' && <MessageSquare size={16} />}
+                                    {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'CreditCard' && <CreditCard size={16} />}
+                                    {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'Image' && <ImageIcon size={16} />}
+                                    {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'HelpCircle' && <HelpCircle size={16} />}
+                                    {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'Mail' && <Mail size={16} />}
+                                    {SECTION_TYPES.find(t => t.type === section.type)?.icon === 'Type' && <Type size={16} />}
+                                  </div>
+                                  <span className="flex-1 font-medium text-sm truncate">
+                                    {sectionLabel}
+                                  </span>
+                                </button>
+                                <button
+                                  onClick={() => removeSection(section.id)}
+                                  aria-label={`Eliminar sección ${sectionLabel}`}
+                                  title="Eliminar sección"
+                                  className="opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 focus-visible:opacity-100 p-1.5 mr-2 hover:bg-red-50 hover:text-red-600 rounded-md transition-all outline-none focus-visible:ring-2 focus-visible:ring-red-500"
+                                >
+                                  <Trash2 size={14} />
+                                </button>
+                              </motion.div>
+                            );
+                          })}
                         </AnimatePresence>
                       </div>
 
@@ -664,7 +690,9 @@ export default function App() {
                             <button 
                               key={type.type}
                               onClick={() => addSection(type.type)}
-                              className="flex flex-col items-center gap-2 p-3 rounded-xl border border-slate-100 hover:border-indigo-200 hover:bg-indigo-50 transition-all group"
+                              aria-label={`Añadir sección ${type.label}`}
+                              title={`Añadir ${type.label}`}
+                              className="flex flex-col items-center gap-2 p-3 rounded-xl border border-slate-100 hover:border-indigo-200 hover:bg-indigo-50 transition-all group outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
                             >
                               <div className="text-slate-400 group-hover:text-indigo-600 transition-colors">
                                 {type.icon === 'Layout' && <Layout size={20} />}
@@ -977,8 +1005,12 @@ export default function App() {
                         onClick={() => setActiveSectionId(section.id)}
                       >
                         {renderSectionPreview(section)}
-                        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2">
-                          <button className="p-2 bg-white shadow-lg rounded-lg text-slate-600 hover:text-indigo-600">
+                        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity flex gap-2 z-20">
+                          <button
+                            aria-label="Configuración de sección"
+                            title="Configuración de sección"
+                            className="p-2 bg-white shadow-lg rounded-lg text-slate-600 hover:text-indigo-600 outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+                          >
                             <Settings size={16} />
                           </button>
                         </div>
