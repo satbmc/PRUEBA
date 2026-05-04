@@ -1,0 +1,3 @@
+## 2025-05-22 - [Accessibilidad en Constructores Visuales]
+**Learning:** En interfaces de tipo "canvas" o constructores visuales, los controles que solo aparecen al pasar el ratón (hover) suelen ser inaccesibles para usuarios de teclado. El uso de `group-focus-within` en el contenedor de la sección permite que estos controles se vuelvan visibles cuando cualquier elemento dentro del contenedor (o el contenedor mismo) recibe el foco, manteniendo la estética limpia sin sacrificar la accesibilidad.
+**Action:** Aplicar siempre `group-focus-within:opacity-100` en contenedores de secciones que oculten herramientas de edición, y asegurar que el contenedor tenga `tabIndex={0}` y un rol semántico si es interactivo.
