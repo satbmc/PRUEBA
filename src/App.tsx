@@ -382,19 +382,25 @@ export default function App() {
             <div className="flex bg-slate-100 p-1 rounded-lg">
               <button 
                 onClick={() => setPreviewDevice('desktop')}
-                className={`p-1.5 rounded-md transition-all ${previewDevice === 'desktop' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
+                aria-label="Vista de escritorio"
+                title="Vista de escritorio"
+                className={`p-1.5 rounded-md transition-all focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none ${previewDevice === 'desktop' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
               >
                 <Monitor size={18} />
               </button>
               <button 
                 onClick={() => setPreviewDevice('tablet')}
-                className={`p-1.5 rounded-md transition-all ${previewDevice === 'tablet' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
+                aria-label="Vista de tableta"
+                title="Vista de tableta"
+                className={`p-1.5 rounded-md transition-all focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none ${previewDevice === 'tablet' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
               >
                 <Tablet size={18} />
               </button>
               <button 
                 onClick={() => setPreviewDevice('mobile')}
-                className={`p-1.5 rounded-md transition-all ${previewDevice === 'mobile' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
+                aria-label="Vista de móvil"
+                title="Vista de móvil"
+                className={`p-1.5 rounded-md transition-all focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none ${previewDevice === 'mobile' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
               >
                 <Smartphone size={18} />
               </button>
@@ -630,7 +636,14 @@ export default function App() {
                               initial={{ opacity: 0, x: -10 }}
                               animate={{ opacity: 1, x: 0 }}
                               exit={{ opacity: 0, x: -10 }}
-                              className={`group flex items-center gap-3 p-3 rounded-xl border transition-all cursor-pointer ${activeSectionId === section.id ? 'bg-indigo-50 border-indigo-200 text-indigo-700' : 'bg-white border-slate-100 hover:border-slate-300 text-slate-600'}`}
+                              tabIndex={0}
+                              role="button"
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                  setActiveSectionId(section.id);
+                                }
+                              }}
+                              className={`group flex items-center gap-3 p-3 rounded-xl border transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none ${activeSectionId === section.id ? 'bg-indigo-50 border-indigo-200 text-indigo-700' : 'bg-white border-slate-100 hover:border-slate-300 text-slate-600'}`}
                               onClick={() => setActiveSectionId(section.id)}
                             >
                               <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center shrink-0 group-hover:bg-white transition-colors">
@@ -648,7 +661,9 @@ export default function App() {
                               </span>
                               <button 
                                 onClick={(e) => { e.stopPropagation(); removeSection(section.id); }}
-                                className="opacity-0 group-hover:opacity-100 p-1.5 hover:bg-red-50 hover:text-red-600 rounded-md transition-all"
+                                aria-label="Eliminar sección"
+                                title="Eliminar sección"
+                                className="opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 p-1.5 hover:bg-red-50 hover:text-red-600 rounded-md transition-all focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none focus-visible:opacity-100"
                               >
                                 <Trash2 size={14} />
                               </button>
@@ -755,31 +770,34 @@ export default function App() {
 
                       <div className="space-y-4">
                         <div>
-                          <label className="text-xs font-bold text-slate-500 mb-1 block">Tipo de Negocio</label>
+                          <label htmlFor="ai-business" className="text-xs font-bold text-slate-500 mb-1 block">Tipo de Negocio</label>
                           <input 
+                            id="ai-business"
                             type="text" 
                             placeholder="Ej: Agencia de viajes, SaaS de RRHH..."
-                            className="w-full p-2 rounded-lg border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-indigo-500"
+                            className="w-full p-2 rounded-lg border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-indigo-500 focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none"
                             value={aiInput.business}
                             onChange={(e) => setAiInput(prev => ({ ...prev, business: e.target.value }))}
                           />
                         </div>
                         <div>
-                          <label className="text-xs font-bold text-slate-500 mb-1 block">Objetivo</label>
+                          <label htmlFor="ai-goal" className="text-xs font-bold text-slate-500 mb-1 block">Objetivo</label>
                           <input 
+                            id="ai-goal"
                             type="text" 
                             placeholder="Ej: Conseguir leads, vender curso..."
-                            className="w-full p-2 rounded-lg border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-indigo-500"
+                            className="w-full p-2 rounded-lg border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-indigo-500 focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none"
                             value={aiInput.goal}
                             onChange={(e) => setAiInput(prev => ({ ...prev, goal: e.target.value }))}
                           />
                         </div>
                         <div>
-                          <label className="text-xs font-bold text-slate-500 mb-1 block">Público Objetivo</label>
+                          <label htmlFor="ai-audience" className="text-xs font-bold text-slate-500 mb-1 block">Público Objetivo</label>
                           <input 
+                            id="ai-audience"
                             type="text" 
                             placeholder="Ej: Emprendedores jóvenes, padres..."
-                            className="w-full p-2 rounded-lg border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-indigo-500"
+                            className="w-full p-2 rounded-lg border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-indigo-500 focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none"
                             value={aiInput.audience}
                             onChange={(e) => setAiInput(prev => ({ ...prev, audience: e.target.value }))}
                           />
